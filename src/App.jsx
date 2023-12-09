@@ -5,12 +5,15 @@ import Movie from './movie/Movie'
 import getPopularMovieData  from './movieAPi'
 
 function App() {
-  const [popular, setPopular] = useState([])
+  const [popular, setPopular] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [activeGenre, setActiveGenre] = useState(0);
 
   useEffect(() => {
     const fetchPopular = async () => {
       const movies = await getPopularMovieData();
-      setPopular(movies.results)
+      setPopular(movies.results);
+      setFiltered(movies.results);
     }
     fetchPopular();
   }, [])
@@ -18,9 +21,9 @@ function App() {
   
   return (
     <div className='app'>
-      <Filter/>
+      <Filter popular={ popular } setFiltered={ setFiltered } activeGenre={ activeGenre } setActiveGenre={ setActiveGenre }/>
       <div className="popularMovies">
-        { popular.map(movie => {
+        { filtered.map(movie => {
           return <Movie key={ movie.id } movie={ movie }/>
         })}
       </div>
