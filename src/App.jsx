@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import Filter from './filter/Filter'
 import Movie from './movie/Movie'
 import getPopularMovieData  from './movieAPi'
 
@@ -17,6 +18,7 @@ function App() {
   
   return (
     <div className='app'>
+      <Filter/>
       <div className="popularMovies">
         { popular.map(movie => {
           return <Movie key={ movie.id } movie={ movie }/>
