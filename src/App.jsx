@@ -3,6 +3,7 @@ import './App.css'
 import Filter from './filter/Filter'
 import Movie from './movie/Movie'
 import getPopularMovieData  from './movieAPi'
+import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
   const [popular, setPopular] = useState([]);
@@ -22,11 +23,17 @@ function App() {
   return (
     <div className='app'>
       <Filter popular={ popular } setFiltered={ setFiltered } activeGenre={ activeGenre } setActiveGenre={ setActiveGenre }/>
-      <div className="popularMovies">
-        { filtered.map(movie => {
-          return <Movie key={ movie.id } movie={ movie }/>
-        })}
-      </div>
+      
+      <motion.div 
+        layout 
+        className="popularMovies"
+      >
+        <AnimatePresence>
+          { filtered.map(movie => {
+            return <Movie key={ movie.id } movie={ movie }/>
+          })}
+        </AnimatePresence>
+      </motion.div>
     </div>
   )
 }

@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import './filter.scss'
-import { useState, useEffect} from 'react'
+import { useEffect} from 'react'
 
 export default function Filter({ setActiveGenre, activeGenre, setFiltered, popular }) {
-
 
   useEffect(()=>{
     if(activeGenre === 0){
@@ -21,18 +20,21 @@ export default function Filter({ setActiveGenre, activeGenre, setFiltered, popul
     <div className='filter'>
         <button
           onClick ={() =>setActiveGenre(0)}
+          className={ activeGenre === 0 ? "active" : ''}
         >
             All
         </button>
         
         <button
           onClick ={() =>setActiveGenre(35)}
+          className={ activeGenre === 35 ? "active" : ''}
         >
             Comedy
         </button>
         
         <button
           onClick ={()=>setActiveGenre(80)}
+          className={ activeGenre === 80 ? "active" : ''}
         >
             Crime
         </button>
